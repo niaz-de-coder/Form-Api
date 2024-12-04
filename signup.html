@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  	<title>SignUp | Form</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="css/style.css">
+
+	</head>
+	<body class="img js-fullheight" style="background-image: url(images/bg.jpg);">
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<h2 class="heading-section">Sign Up Here</h2>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-md-6 col-lg-4">
+					<div class="login-wrap p-0">
+		      	<h3 class="mb-4 text-center">Create an Account</h3>
+		      	<form action="#" class="signin-form">
+		      		<div class="form-group">
+		      			<input id="fullname" type="text" class="form-control" placeholder="Full Name" required>
+		      		</div>
+                      <div class="form-group">
+                        <input id="username" type="text" class="form-control" placeholder="Username" required>
+                    </div>
+                    <div class="form-group">
+                        <input id="email" type="email" class="form-control" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input id="phonenum" type="number" class="form-control" placeholder="Phone Number" required>
+                    </div>
+	            <div class="form-group">
+	              <input id="password-field" type="password" class="form-control" placeholder="Password" required>
+	              <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+	            </div>
+                <div class="form-group">
+                    <input id="cpassword-field" type="password" class="form-control" placeholder="Confirm Password" required>
+                    <span toggle="#cpassword-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                  </div>
+	            <div class="form-group">
+	            	<button id="sign" type="submit" class="form-control btn btn-primary submit px-3">Sign Up</button>
+	            </div>
+	            <div class="form-group d-md-flex">
+	            	<div class="w-50">
+	            </div>
+	          </form>
+	          <div class="social d-flex text-center mr-md-5">
+	          	<a href="#" class="px-3 py-2 mr-md-5 rounded"><span class="ion-logo-facebook mr-2"></span>Sign In</a>
+	          </div>
+		      </div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script src="js/jquery.min.js"></script>
+  <script src="js/popper.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    $(document).ready(function() {
+      // When the sign up button is clicked
+      $('#sign').click(function(event) {
+        // Email Validation
+        var email = $('#email').val();
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  
+        // Phone Number Validation (Bangladesh Specific)
+        var phone = $('#phonenum').val();
+        var phoneRegex = /^01[3-9]\d{8}$/;  // Bangladesh phone numbers starting with 01 and followed by 9 digits
+  
+        // Password Validation
+        var password = $('#password-field').val();
+        var confirmPassword = $('#cpassword-field').val();
+  
+        // Full Name and Username Validation
+        var fullName = $('#fullname').val();
+        var username = $('#username').val();
+  
+        var valid = true;
+  
+        // Reset input border colors
+        $('#email').css('border-color', '');
+        $('#phonenum').css('border-color', '');
+        $('#password-field').css('border-color', '');
+        $('#cpassword-field').css('border-color', '');
+        $('#fullname').css('border-color', '');
+        $('#username').css('border-color', '');
+  
+        // Check if Full Name is provided
+        if (fullName.trim() === "") {
+          alert("Please enter your full name.");
+          $('#fullname').css('border-color', 'red');
+          valid = false;
+        }
+  
+        // Check if Username is provided
+        if (username.trim() === "") {
+          alert("Please enter a username.");
+          $('#username').css('border-color', 'red');
+          valid = false;
+        }
+  
+        // Check if email is valid
+        if (!emailRegex.test(email)) {
+          alert("Please enter a valid email address.");
+          $('#email').css('border-color', 'red');
+          valid = false;
+        }
+  
+        // Check if phone number is valid (Bangladesh)
+        if (!phoneRegex.test(phone)) {
+          alert("Please enter a valid Bangladeshi phone number (e.g., 017XXXXXXXX).");
+          $('#phonenum').css('border-color', 'red');
+          valid = false;
+        }
+  
+        // Check if password and confirm password match
+        if (password !== confirmPassword) {
+          alert("Passwords do not match.");
+          $('#password-field').css('border-color', 'red');
+          $('#cpassword-field').css('border-color', 'red');
+          valid = false;
+        }
+  
+        if (!valid) {
+          event.preventDefault(); // Prevent form submission if validation fails
+        } else {
+          // If you want to submit the form programmatically, you can use:
+          // $('#signup-form').submit();
+          alert("Form is valid, proceeding with submission!");
+        }
+      });
+    });
+  </script>
+  
+  
+
+	</body>
+</html>
+
